@@ -1,0 +1,54 @@
+<form [formGroup]="expenseForm" (ngSubmit)="settleExpenses()">
+  <table class="table table-fixed">
+    <tr class="table-header-group text-left">
+      <th class="p-1">Name</th>
+      <th class="p-1">Expense</th>
+    </tr>
+    <tr class="table-row">
+      <td class="p-1">
+        <input
+          formControlName="name"
+          placeholder="Name"
+          class="border border-teal-500 p-2"
+        />
+      </td>
+      <td class="p-1">
+        <input
+          type="number"
+          formControlName="amount"
+          placeholder="Expense"
+          class="border border-teal-500 p-2"
+        />
+      </td>
+      <td class="p-1">
+        <button
+          (click)="addNewExpense()"
+          class="border rounded-full bg-green-300 p-2 px-4 text-white"
+        >
+          Add Expense
+        </button>
+      </td>
+    </tr>
+    <tr *ngFor="let expense of expenses(); let i = index" class="table-row">
+      <td class="p-1">{{ expense.name }}</td>
+      <td class="p-1">{{ expense.amount | currency }}</td>
+      <td class="p-1">
+        <button
+          (click)="removeExpense(i)"
+          class="border rounded-full bg-red-500 p-2 px-4 text-white"
+        >
+          Remove
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td class="p-1">Total</td>
+      <td class="p-1 font-bold">{{ total() | currency }}</td>
+      <td class="p-1">
+        <button class="bg-yellow-400 rounded-lg padding p-2" type="submit">
+          Settle
+        </button>
+      </td>
+    </tr>
+  </table>
+</form>
