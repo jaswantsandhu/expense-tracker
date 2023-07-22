@@ -1,0 +1,71 @@
+<form [formGroup]="expenseForm" (ngSubmit)="submit()" class="space-y-6">
+  <div>
+    <label class="block">
+      <span class="text-gray-700">Name</span>
+      <input
+        formControlName="name"
+        placeholder="Name"
+        [ngClass]="{
+          'border-red-500':
+            expenseForm.controls.name.invalid &&
+            (expenseForm.controls.name.dirty ||
+              expenseForm.controls.name.touched)
+        }"
+        class="border border-teal-500 p-2 mt-1 block w-full"
+      />
+    </label>
+    <div
+      *ngIf="
+        expenseForm.controls.name.invalid &&
+        (expenseForm.controls.name.dirty || expenseForm.controls.name.touched)
+      "
+    >
+      <small class="text-red-500">Name is required.</small>
+    </div>
+  </div>
+  <div>
+    <label class="block">
+      <span class="text-gray-700">Expense</span>
+      <input
+        type="number"
+        formControlName="amount"
+        placeholder="Expense"
+        [ngClass]="{
+          'border-red-500':
+            expenseForm.controls.amount.invalid &&
+            (expenseForm.controls.amount.dirty ||
+              expenseForm.controls.amount.touched)
+        }"
+        class="border border-teal-500 p-2 mt-1 block w-full"
+      />
+    </label>
+    <div
+      *ngIf="
+        expenseForm.controls.amount.invalid &&
+        (expenseForm.controls.amount.dirty ||
+          expenseForm.controls.amount.touched)
+      "
+    >
+      <small
+        class="text-red-500"
+        *ngIf="expenseForm.controls.amount.errors?.['required']"
+      >
+        Expense is required.
+      </small>
+      <small
+        class="text-red-500"
+        *ngIf="expenseForm.controls.amount.errors?.['min']"
+      >
+        Expense must be a positive amount.
+      </small>
+    </div>
+  </div>
+  <button
+    type="submit"
+    [ngClass]="{ 'bg-slate-300' : expenseForm.invalid }"
+    class="input border rounded-full bg-green-300 p-2 px-4 text-white"
+    [disabled]="expenseForm.invalid"
+  >
+    Add Expense
+  </button>
+</form>
