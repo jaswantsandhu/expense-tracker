@@ -1,21 +1,25 @@
 <div class="container mx-auto px-4">
-    <header class="mb-6">
-      <h1 class="text-2xl font-bold">Expense Tracker</h1>
-    </header>
-    <div class="grid grid-cols-12 gap-4">
-      <div class="col-span-12 sm:col-span-12 md:col-span-4 lg:col-span-3">
-        <expense-tracker-expense-form
-          (submitExpense)="addNewExpense($event)"
-        ></expense-tracker-expense-form>
-      </div>
-      <div class="col-span-12 sm:col-span-12 md:col-span-8 lg:col-span-9">
-        <expense-tracker-expense-grid
-          [expenses]="expenses()"
-          (remove)="removeExpense($event)"
-          (add)="addNewExpense($event)"
-          (settle)="settleExpense($event)"
-        ></expense-tracker-expense-grid>
-      </div>
+  <header class="mb-6">
+    <h1 class="text-2xl font-bold">Expense Tracker</h1>
+  </header>
+  <div class="grid grid-cols-12 gap-4">
+    <div class="col-span-12 sm:col-span-12 md:col-span-4 lg:col-span-3">
+      <expense-tracker-expense-form
+        (submitExpense)="addNewExpense($event)"
+      ></expense-tracker-expense-form>
+    </div>
+    <div class="col-span-12 sm:col-span-12 md:col-span-8 lg:col-span-9">
+      <expense-tracker-expense-grid
+        [expenses]="expenses()"
+        (remove)="removeExpense($event)"
+        (add)="addNewExpense($event)"
+        (settle)="settleExpense()"
+      ></expense-tracker-expense-grid>
     </div>
   </div>
-  
+</div>
+<expense-tracker-payout-modal
+  *ngIf="showPayoutModal()"
+  (closeModal)="close()"
+  [payouts]="payouts()"
+></expense-tracker-payout-modal>

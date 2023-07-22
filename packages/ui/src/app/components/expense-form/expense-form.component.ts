@@ -6,7 +6,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { Expense } from '../../interfaces/expense';
+import { Expense } from '@expense-tracker/data-model';
 
 @Component({
   selector: 'expense-tracker-expense-form',
@@ -28,6 +28,6 @@ export class ExpenseFormComponent {
 
   submit() {
     this.submitExpense.emit(this.expenseForm.value as Expense);
-    this.expenseForm.reset();
+    this.expenseForm.reset({ name: '', amount: 0.0 });
   }
 }

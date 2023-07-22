@@ -2,12 +2,11 @@ import {
   Component,
   Output,
   computed,
-  signal,
   EventEmitter,
   Input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Expense } from '../../interfaces/expense';
+import { Expense } from '@expense-tracker/data-model';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ExpenseFormComponent } from '../expense-form/expense-form.component';
 
