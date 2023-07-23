@@ -16,7 +16,7 @@ PayoutsController.post('/', (req, res) => {
     const balances = calculateBalance(expenses);
     res.json(balances);
   } catch (error) {
-    console.error(error);
+    res.status(500).json({ error: "Internal server error." });
   }
 });
 

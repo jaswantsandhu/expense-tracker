@@ -1,6 +1,6 @@
-import { Expense } from '@expense-tracker/data-model';
+import { Expense, PayoutsResponse } from '@expense-tracker/data-model';
 
-export function calculateBalance(expenses: Expense[]) {
+export function calculateBalance(expenses: Expense[]): PayoutsResponse {
     const groupExpenses: Record<string, number> = expenses.reduce((accu, curr) => {
         return {
             ...accu,
