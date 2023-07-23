@@ -24,6 +24,8 @@ export class DashboardComponent {
   expenses = signal<Expense[]>([]);
   showPayoutModal = signal<boolean>(false);
   payouts = signal<Payout[]>([]);
+  isPayoutError = signal<boolean>(false);
+  isPayoutLoading = signal<boolean>(false);
 
   removeExpense(index: number) {
     this.expenses.mutate(() => {
@@ -38,12 +40,21 @@ export class DashboardComponent {
   }
 
   settleExpense() {
-    this._expenseService
-      .settleExpenses(this.expenses())
-      .subscribe((response) => {
+    this.isPayoutError.set(false);
+    this.isPayoutLoading.set(true);
+
+    this._expenseService.settleExpenses(this.expenses()).subscribe({
+      next: (response) => {
+        
         this.payouts.set(response.payouts);
         this.showPayoutModal.set(true);
-      });
+        this.isPayoutLoading.set(false);
+      },
+      error: () => {
+        this.isPayoutLoading.set(false);
+        this.isPayoutError.set(true);
+      },
+    });
   }
 
   close() {

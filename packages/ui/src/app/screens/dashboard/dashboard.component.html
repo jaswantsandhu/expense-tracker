@@ -15,6 +15,8 @@
         (add)="addNewExpense($event)"
         (settle)="settleExpense()"
       ></expense-tracker-expense-grid>
+      <p *ngIf="isPayoutLoading()" class="text-green-700">Loading...<p></p>
+      <p *ngIf="isPayoutError()" class="text-red-700">Error occured while fetching payouts.<p>
     </div>
   </div>
 </div>

@@ -20,7 +20,7 @@ export class ExpenseFormComponent {
 
   expenseForm = new FormGroup({
     name: new FormControl<string>('', [Validators.required]),
-    amount: new FormControl<number>(0.0, [
+    amount: new FormControl<number>(0, [
       Validators.required,
       Validators.min(0.1),
     ]),
