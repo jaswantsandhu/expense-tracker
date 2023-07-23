@@ -5,8 +5,12 @@
   "scripts": {
     "start-ui-dev": "nx serve ui",
     "install-all": "yarn",
-    "start": "nx serve ui"
-  },
+    "start": "nx run-many --target=serve",
+    "test" : "yarn test:ui && yarn test:api",
+    "test:ui" : "nx test --project=ui",
+    "test:api" : "nx test --project=api",
+    "e2e": "nx run ui-e2e:e2e"
+    },
   "private": true,
   "dependencies": {
     "@angular/animations": "~16.1.0",
